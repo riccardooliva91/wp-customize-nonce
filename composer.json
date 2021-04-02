@@ -1,0 +1,14 @@
+{
+    "name": "riccardooliva91/wp-customize-nonce",
+    "description": "A WordPress plugin which allows you to customize the nonce generation and validation.",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Riccardo Oliva",
+            "email": "riccardo91.oliva@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
