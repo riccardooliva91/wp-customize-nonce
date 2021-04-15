@@ -4,46 +4,47 @@ namespace WCN\Factories;
 
 use WCN\AbstractFactory;
 use WCN\ElementInterface;
-use WCN\Elements\DefaultUid;
+use WCN\Elements\DefaultSessionToken;
 
 /**
- * Class UidFactory
+ * Class TokenFactory
  * @package WCN\Factories
  */
-class UidFactory extends AbstractFactory {
+class TokenFactory extends AbstractFactory {
 
 	/**
 	 * @inheritDoc
 	 */
 	public function get_default(): ElementInterface {
-		return new DefaultUid();
+		return new DefaultSessionToken();
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function get_element_constant_name(): string {
-		return 'WCN_UID_METHOD';
+		return 'WCN_TOKEN_METHOD';
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function get_fixed_value_const_constant_name(): string {
-		return 'WCN_UID';
+		return 'WCN_TOKEN';
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function get_cookie_name_constant_name(): string {
-		return 'WCN_UID_COOKIE_NAME';
+		return 'WCN_TOKEN_COOKIE_NAME';
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function get_url_param_constant_name(): string {
-		return 'WCN_UID_URL_PARAMETER_NAME';
+		return 'WCN_TOKEN_URL_PARAMETER_NAME';
 	}
+
 }

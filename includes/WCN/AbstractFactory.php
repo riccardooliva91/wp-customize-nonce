@@ -4,7 +4,7 @@ namespace WCN;
 
 use WCN\Exceptions\InvalidConstantValue;
 use WCN\Exceptions\UndefinedOrEmptyConstant;
-use WCN\Elements\{Cookie, EmptyElement, Ip, UrlParameter, UserId};
+use WCN\Elements\{Cookie, EmptyElement, Ip, UrlParameter, Value};
 
 /**
  * Class AbstractFactory
@@ -18,15 +18,15 @@ abstract class AbstractFactory {
 	 * @return ElementInterface
 	 * @throws InvalidConstantValue|UndefinedOrEmptyConstant
 	 */
-	public function get() {
-		$method_const = $this->get_method_constant_name();
-		if ( ! defined( $method_const ) ) {
-			throw new UndefinedOrEmptyConstant( $method_const );
+	public function get(): ElementInterface {
+		$element = $this->get_element_constant_name();
+		if ( ! defined( $element ) ) {
+			throw new UndefinedOrEmptyConstant( $element );
 		}
 
-		switch ( constant( $method_const ) ) {
-			case 'user_id':// Default WP method
-				return new UserId();
+		switch ( constant( $element ) ) {
+			case 'default': // Default WP method
+				return $this->get_default();
 
 			case 'ip':
 				return new Ip();
@@ -35,55 +35,27 @@ abstract class AbstractFactory {
 				return new EmptyElement();
 
 			case 'url_param':
-				$param_const = $this->get_url_param_constant_name();
-				$this->validate( $param_const );
+				$param = $this->get_url_param_constant_name();
+				$this->validate( $param );
 
-				return new UrlParameter( $param_const );
+				return new UrlParameter( constant( $param ) );
 
 			case 'cookie':
-				$cookie_const = $this->get_cookie_constant_name();
-				$this->validate( $cookie_const );
+				$cookie = $this->get_cookie_name_constant_name();
+				$this->validate( $cookie );
 
-				return new Cookie( constant( $cookie_const ) );
+				return new Cookie( constant( $cookie ) );
+
+			case 'fixed':
+				$value = $this->get_fixed_value_const_constant_name();
+				$this->validate( $value );
+
+				return new Value( constant( $value ) );
 
 			default:
-				throw new InvalidConstantValue( $method_const, constant( $method_const ) );
+				throw new InvalidConstantValue( $element, constant( $element ) );
 		}
 	}
-
-	/**
-	 * Build method constant name
-	 *
-	 * @return string
-	 */
-	protected function get_method_constant_name(): string {
-		return sprintf( 'WCN_%s_METHOD', $this->get_element() );
-	}
-
-	/**
-	 * Build cookie constant name
-	 *
-	 * @return string
-	 */
-	protected function get_cookie_constant_name(): string {
-		return sprintf( 'WCN_%s_COOKIE_NAME', $this->get_element() );
-	}
-
-	/**
-	 * Build url param constant name
-	 *
-	 * @return string
-	 */
-	protected function get_url_param_constant_name(): string {
-		return sprintf( 'WCN_%s_URL_PARAMETER_NAME', $this->get_element() );
-	}
-
-	/**
-	 * To be defined by concrete implementations
-	 *
-	 * @return string
-	 */
-	protected abstract function get_element(): string;
 
 	/**
 	 * Validate situational constant
@@ -99,5 +71,32 @@ abstract class AbstractFactory {
 			throw new UndefinedOrEmptyConstant( $const );
 		}
 	}
+
+	/**
+	 * Default value for this factory
+	 *
+	 * @return ElementInterface
+	 */
+	protected abstract function get_default(): ElementInterface;
+
+	/**
+	 * @return string
+	 */
+	protected abstract function get_element_constant_name(): string;
+
+	/**
+	 * @return string
+	 */
+	protected abstract function get_fixed_value_const_constant_name(): string;
+
+	/**
+	 * @return string
+	 */
+	protected abstract function get_cookie_name_constant_name(): string;
+
+	/**
+	 * @return string
+	 */
+	protected abstract function get_url_param_constant_name(): string;
 
 }

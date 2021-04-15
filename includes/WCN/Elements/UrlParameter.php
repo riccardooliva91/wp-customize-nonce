@@ -4,6 +4,10 @@ namespace WCN\Elements;
 
 use WCN\ElementInterface;
 
+/**
+ * Class UrlParameter
+ * @package WCN\Elements
+ */
 class UrlParameter implements ElementInterface {
 
 	/**
@@ -25,7 +29,7 @@ class UrlParameter implements ElementInterface {
 	 * @inheritDoc
 	 */
 	public function get() {
-		// TODO: Implement get() method.
+		return filter_input( INPUT_GET, $this->parameter );
 	}
 
 }

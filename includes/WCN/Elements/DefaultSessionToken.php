@@ -4,7 +4,11 @@ namespace WCN\Elements;
 
 use WCN\ElementInterface;
 
-class UserId implements ElementInterface {
+/**
+ * Class DefaultSessionToken
+ * @package WCN\Elements
+ */
+class DefaultSessionToken implements ElementInterface {
 
 	/**
 	 * @inheritDoc

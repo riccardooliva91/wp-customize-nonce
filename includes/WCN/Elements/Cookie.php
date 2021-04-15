@@ -4,6 +4,10 @@ namespace WCN\Elements;
 
 use WCN\ElementInterface;
 
+/**
+ * Class Cookie
+ * @package WCN\Elements
+ */
 class Cookie implements ElementInterface {
 
 	/**
@@ -25,7 +29,7 @@ class Cookie implements ElementInterface {
 	 * @inheritDoc
 	 */
 	public function get() {
-		// TODO: Implement get() method.
+		return filter_input( INPUT_COOKIE, $this->cookie );
 	}
 
 }

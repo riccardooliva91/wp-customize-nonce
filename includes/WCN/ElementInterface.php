@@ -9,8 +9,6 @@ namespace WCN;
 interface ElementInterface {
 
 	/**
-	 * Get value
-	 *
 	 * @return mixed
 	 */
 	public function get();

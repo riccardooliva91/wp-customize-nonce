@@ -7,6 +7,8 @@ use Throwable;
 /**
  * Class InvalidConstantValue
  * @package WCN\Exceptions
+ *
+ * @codeCoverageIgnore
  */
 class InvalidConstantValue extends \Exception {
 
