@@ -7,6 +7,8 @@ use WCN\ElementInterface;
 /**
  * Class UrlParameter
  * @package WCN\Elements
+ *
+ * @codeCoverageIgnore
  */
 class UrlParameter implements ElementInterface {
 

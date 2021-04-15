@@ -7,6 +7,8 @@ use WCN\ElementInterface;
 /**
  * Class DefaultSessionToken
  * @package WCN\Elements
+ *
+ * @codeCoverageIgnore
  */
 class DefaultSessionToken implements ElementInterface {
 
@@ -14,7 +16,7 @@ class DefaultSessionToken implements ElementInterface {
 	 * @inheritDoc
 	 */
 	public function get() {
-		// TODO: Implement get() method.
+		return wp_get_session_token();
 	}
 
 }

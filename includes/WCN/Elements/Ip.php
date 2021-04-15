@@ -7,6 +7,8 @@ use WCN\ElementInterface;
 /**
  * Class Ip
  * @package WCN\Elements
+ *
+ * @codeCoverageIgnore
  */
 class Ip implements ElementInterface {
 

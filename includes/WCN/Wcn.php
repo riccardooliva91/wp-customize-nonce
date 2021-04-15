@@ -42,6 +42,41 @@ class Wcn {
 	}
 
 	/**
+	 * @return bool
+	 */
+	public function is_deep_allowed(): bool {
+		return defined( 'WCN_VALIDATE_OLD_NONCES' ) ? (bool) WCN_VALIDATE_OLD_NONCES : true;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_schema(): string {
+		return defined( 'WCN_NONCE_SCHEMA' ) ? WCN_NONCE_SCHEMA : 'nonce';
+	}
+
+	/**
+	 * @return int
+	 */
+	public function get_offset(): int {
+		return defined( 'WCN_NONCE_OFFSET' ) ? (int) WCN_NONCE_OFFSET : - 12;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function get_length(): int {
+		return defined( 'WCN_NONCE_OFFSET' ) ? (int) WCN_NONCE_OFFSET : - 12;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function get_action() {
+		return $this->action;
+	}
+
+	/**
 	 * @return mixed
 	 * @throws Exceptions\InvalidConstantValue
 	 * @throws Exceptions\UndefinedOrEmptyConstant
@@ -93,9 +128,8 @@ class Wcn {
 			return 1;
 		}
 
-		$deep = defined( 'WCN_VALIDATE_OLD_NONCES' ) ? WCN_VALIDATE_OLD_NONCES : true;
-		if ( $deep ) {
-			if ( hash_equals( $this->generate_nonce( $deep ), $nonce ) ) {
+		if ( $this->is_deep_allowed() ) {
+			if ( hash_equals( $this->generate_nonce( true ), $nonce ) ) {
 				return 2;
 			}
 		}
@@ -111,22 +145,15 @@ class Wcn {
 	 * @throws Exceptions\InvalidConstantValue
 	 * @throws Exceptions\UndefinedOrEmptyConstant
 	 */
-	public function generate_nonce( bool $deep = null ): string {
-		if ( is_null( $deep ) ) {
-			$deep = defined( 'WCN_VALIDATE_OLD_NONCES' ) ? WCN_VALIDATE_OLD_NONCES : true;
-		}
-
-		$schema = defined( 'WCN_NONCE_SCHEMA' ) ? WCN_NONCE_SCHEMA : 'nonce';
-		$offset = defined( 'WCN_NONCE_OFFSET' ) ? (int) WCN_NONCE_OFFSET : - 12;
-		$length = defined( 'WCN_NONCE_LENGTH' ) ? (int) WCN_NONCE_LENGTH : 10;
+	public function generate_nonce( bool $deep = false ): string {
 		$values = array_filter( [
 			'tick'   => $deep ? $this->get_tick() - 1 : $this->get_tick(),
-			'action' => $this->action,
+			'action' => $this->get_action(),
 			'uid'    => $this->get_uid(),
 			'token'  => $this->get_token(),
 		] );
 
-		return substr( wp_hash( implode( '|', $values ), $schema ), $offset, $length );
+		return substr( wp_hash( implode( '|', $values ), $this->get_schema() ), $this->get_offset(), $this->get_length() );
 	}
 
 }

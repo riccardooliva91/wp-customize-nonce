@@ -13,9 +13,17 @@
     "require": {
         "PHP": ">=7.1"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^9.4",
+        "brain/monkey": "^2.6"
+    },
     "autoload": {
         "psr-4": {
             "WCN\\": "includes/WCN"
         }
+    },
+    "scripts": {
+        "test": "php ./vendor/bin/phpunit",
+        "coverage": "php vendor/bin/phpunit --coverage-html ./qa-reports/php/coverage"
     }
 }

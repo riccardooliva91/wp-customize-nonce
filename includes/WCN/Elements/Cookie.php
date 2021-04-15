@@ -7,6 +7,8 @@ use WCN\ElementInterface;
 /**
  * Class Cookie
  * @package WCN\Elements
+ *
+ * @codeCoverageIgnore
  */
 class Cookie implements ElementInterface {
 

@@ -7,6 +7,8 @@ use WCN\ElementInterface;
 /**
  * Class Value
  * @package WCN\Elements
+ *
+ * @codeCoverageIgnore
  */
 class Value implements ElementInterface {
 
