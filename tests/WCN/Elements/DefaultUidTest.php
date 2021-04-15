@@ -2,7 +2,7 @@
 
 namespace WCN\Tests\WCN\Elements;
 
-use Dkwp\Tests\WCN_TestCase;
+use WCN\Tests\WCN_TestCase;
 
 /**
  * Class DefaultUidTest

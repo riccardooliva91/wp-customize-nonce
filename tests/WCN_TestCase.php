@@ -1,6 +1,6 @@
 <?php
 
-namespace Dkwp\Tests;
+namespace WCN\Tests;
 
 use PHPUnit\Framework\TestCase;
 

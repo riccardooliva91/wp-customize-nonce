@@ -9,6 +9,8 @@ use WCN\Elements\DefaultSessionToken;
 /**
  * Class TokenFactory
  * @package WCN\Factories
+ *
+ * @codeCoverageIgnore
  */
 class TokenFactory extends AbstractFactory {
 

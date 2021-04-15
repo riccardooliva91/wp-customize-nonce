@@ -66,7 +66,7 @@ class Wcn {
 	 * @return int
 	 */
 	public function get_length(): int {
-		return defined( 'WCN_NONCE_OFFSET' ) ? (int) WCN_NONCE_OFFSET : - 12;
+		return defined( 'WCN_NONCE_LENGTH' ) ? (int) WCN_NONCE_LENGTH : - 12;
 	}
 
 	/**
@@ -83,13 +83,13 @@ class Wcn {
 	 */
 	public function get_uid() {
 		if ( empty( $this->uid ) ) {
-			$this->uid = ( new UidFactory() )->get();
+			$this->uid = ( new UidFactory() )->get()->get();
 			if ( empty( $this->uid ) ) {
 				$this->uid = apply_filters( 'nonce_user_logged_out', $this->uid, $this->action );
 			}
 		}
 
-		return $this->uid->get();
+		return $this->uid;
 	}
 
 	/**
@@ -99,10 +99,10 @@ class Wcn {
 	 */
 	public function get_token() {
 		if ( empty( $this->token ) ) {
-			$this->token = ( new TokenFactory() )->get();
+			$this->token = ( new TokenFactory() )->get()->get();
 		}
 
-		return $this->token->get();
+		return $this->token;
 	}
 
 	/**
