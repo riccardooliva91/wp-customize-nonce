@@ -3,10 +3,10 @@
 namespace WCN;
 
 /**
- * Interface UidInterface
+ * Interface ElementInterface
  * @package WCN
  */
-interface UidInterface {
+interface ElementInterface {
 
 	/**
 	 * Get value
