@@ -45,19 +45,19 @@ There are different possible values, some of them require the definition of an a
 - `none`: skips this chunk in both the nonce generation and validation;
 - `url_param`: uses a __GET__ parameter of your choice for both the generation and validation.
     - If you choose this approach, be sure to define the `WCN_UID_URL_PARAMETER_NAME` or `WCN_TOKEN_URL_PARAMETER_NAME` based on your needs:
-    ```
+    ```php
     define( 'WCN_UID_URL_PARAMETER_NAME', 'param_name' );
     define( 'WCN_TOKEN_URL_PARAMETER_NAME', 'param_name' );
     ```
 - `cookie`: uses a cookie value for both the generation and validation.
     - If you choose this approach, be sure to define the `WCN_UID_COOKIE_NAME` or `WCN_TOKEN_COOKIE_NAME` based on your needs:
-    ```
+    ```php
     define( 'WCN_UID_COOKIE_NAME', 'cookie_name' );
     define( 'WCN_TOKEN_COOKIE_NAME', 'cookie_name' );
     ```
 - `fixed`: uses a fixed value of your choice.
     - If you choose this approach, be sure to define the `WCN_UID` or `WCN_TOKEN` based on your needs:
-    ```
+    ```php
     define( 'WCN_UID', 'my_value' );
     define( 'WCN_TOKEN', 'my_value' );
     ```
