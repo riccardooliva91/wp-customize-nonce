@@ -11,7 +11,7 @@ by defining constants. Read more for details.
 
 ## Installation
 Right now it is not available in the official WP plugins repository.
-At the current stage the preferred method to install this plugin is __via Composer__:
+At the current stage the preferred method to install this plugin is __via [Composer](https://getcomposer.org/)__:
 ```
 composer require riccardooliva91/wp-customize-nonce
 ```
