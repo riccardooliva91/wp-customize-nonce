@@ -66,7 +66,7 @@ class Wcn {
 	 * @return int
 	 */
 	public function get_length(): int {
-		return defined( 'WCN_NONCE_LENGTH' ) ? (int) WCN_NONCE_LENGTH : - 12;
+		return defined( 'WCN_NONCE_LENGTH' ) ? (int) WCN_NONCE_LENGTH : 10;
 	}
 
 	/**
